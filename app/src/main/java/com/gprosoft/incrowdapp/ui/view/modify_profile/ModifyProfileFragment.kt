@@ -37,8 +37,8 @@ class ModifyProfileFragment : Fragment() {
         _binding = FragmentModifyProfileBinding.inflate(inflater,container,false)
         val datos = UsuarioProvider.usuarioModel
         binding.ETUserName.hint = datos.username
-        binding.ETName.hint = datos.name ?: "prueba-name"
-        binding.ETEmail.hint = datos.email ?: "prueba-email"
+        binding.ETName.hint = datos.name ?: datos.name
+        binding.ETEmail.hint = datos.email ?: datos.email
         println(datos.password)//encriptada
         return binding.root
     }

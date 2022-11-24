@@ -26,13 +26,13 @@ class UsuarioService {
         }
     }
 
-    suspend fun getModifyProfileUser(): UsuarioModel {
+    suspend fun getModifyProfileUser(): RespuestaModel {
         return withContext(Dispatchers.IO){
             println(UsuarioProvider.usuarioModel.name + UsuarioProvider.usuarioModel.username +
                     UsuarioProvider.usuarioModel.email + UsuarioProvider.usuarioModel.password +
                     UsuarioProvider.usuarioModel.valoracion)
             val response = retrofit.create(UsuarioApiClient::class.java).getUsuarioModifyProfile(UsuarioProvider.usuarioModel.username , UsuarioProvider.usuarioModel)
-            response.body() ?: UsuarioModel(null,null,null,null,0.0F) //Si la respuesta es nula, que quieres devolver
+            response.body() ?: RespuestaModel(null,null,null) //Si la respuesta es nula, que quieres devolver
         }
     }
 

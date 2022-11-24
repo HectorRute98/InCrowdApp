@@ -23,22 +23,13 @@ class UsuarioRepository {
         return response     //lo retorno
     }
 
-    suspend fun getUsuarioModifyProfile(): UsuarioModel {
+    suspend fun getUsuarioModifyProfile(): RespuestaModel {
         val response = api.getModifyProfileUser() //la primera vez que yo llame al repositorio,
         // va a llamar al service (aquí), este service va a llamar al api client,
         // va a recuperar esa respuesta, se la devolvera al service y este al repositorio (esto),
         // y el repositorio ahora le dirá al provider  que la respuesta actual es el response
-
-        UsuarioProvider.usuarioModel = UsuarioModel(response.username ,
-                                                    UsuarioProvider.usuarioModel.password ,
-                                                    response.name, response.email,
-                                                    response.valoracion) //Lo almacenamos en esa memoria local
-        println(UsuarioProvider.usuarioModel.name + " " +
-                UsuarioProvider.usuarioModel.username + " " +
-                UsuarioProvider.usuarioModel.email + " " +
-                UsuarioProvider.usuarioModel.password + " " +
-                UsuarioProvider.usuarioModel.valoracion
-        )
+        
+        RespuestaProvider.respuesta = response //Lo almacenamos en esa memoria local
         return response     //lo retorno
     }
 

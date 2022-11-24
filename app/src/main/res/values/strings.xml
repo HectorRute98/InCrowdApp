@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">InCrowdApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_following">Following</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_addevent">Add Event</string>
+    <string name="title_info">Info</string>
+    <string name="help_text">inCrowd is an application where you can create your events and sign up for other people\'s events. You can make new friends and enjoy a unique experience for free.</string>
+    <string name="title_modifyprofile">ModifyProfile</string>
+</resources>

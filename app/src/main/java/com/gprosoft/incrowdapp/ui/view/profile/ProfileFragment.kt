@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.gprosoft.incrowdapp.R
+import com.gprosoft.incrowdapp.data.model.UsuarioProvider
 import com.gprosoft.incrowdapp.databinding.FragmentProfileBinding
 import com.gprosoft.incrowdapp.databinding.FragmentResetBinding
 import com.gprosoft.incrowdapp.ui.components.DialogFragmentLoading
@@ -22,23 +23,31 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private val profileViewModel: ProfileViewModel by viewModels()
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater,container,false)
+        val datos = UsuarioProvider.usuarioModel
+        binding.textView4.text = datos.username
+        binding.textView5.text = datos.name
+        binding.textView6.text = datos.email
+        binding.profileRate.rating = datos.valoracion!!
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var dialog = DialogFragmentLoading()
 
         binding.buttonModifyAccount.setOnClickListener {
             findNavController().navigate(R.id.navigation_modifyprofile)
         }
+
+        binding.button.setOnClickListener {
+            findNavController().navigate(R.id.navigation_myevents)
+        }
+
+
 
     }
 

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.view.addevent.AddEventFragment"
-    android:background="@color/white">
+    tools:context=".ui.view.profile.myevents.ModifyEventFragment">
 
     <TextView
         android:id="@+id/textView2"
@@ -20,12 +19,12 @@
         android:textColor="@color/blue_app"
         android:textAlignment="textStart"
         android:textSize="27sp"
-        app:layout_constraintEnd_toStartOf="@+id/buttonInfo"
+        app:layout_constraintEnd_toStartOf="@+id/buttonInfo2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/buttonInfo"
+        android:id="@+id/buttonInfo2"
         android:layout_width="38dp"
         android:layout_height="38dp"
         android:layout_marginTop="20dp"
@@ -49,14 +48,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:text="Add Event:"
+        android:text="Modify Event:"
         android:textColor="@color/blue_app"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
-    <EditText
+    <TextView
         android:id="@+id/event_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -121,8 +120,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:hint="Capacity"
-        android:textSize="16sp"
         android:digits="0123456789"
+        android:textSize="16sp"
         android:maxLength="20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -143,5 +142,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/event_cap" />
 
+    <Button
+        android:id="@+id/buttonDeleteAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/rojo"
+        android:text="DELETE ACCOUNT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_hour" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

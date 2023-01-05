@@ -1,4 +1,4 @@
-package com.gprosoft.incrowdapp.ui.view.info
+package com.gprosoft.incrowdapp.ui.view.home.info
 
 import android.content.Context
 import android.os.Bundle

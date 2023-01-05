@@ -1,4 +1,4 @@
-package com.gprosoft.incrowdapp.ui.view.modify_profile
+package com.gprosoft.incrowdapp.ui.view.profile.modify_profile
 
 import android.widget.EditText
 import androidx.lifecycle.MutableLiveData

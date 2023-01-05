@@ -18,7 +18,7 @@ import com.gprosoft.incrowdapp.databinding.FragmentHomeBinding
 import com.gprosoft.incrowdapp.databinding.FragmentLoginBinding
 import com.gprosoft.incrowdapp.ui.components.DialogFragmentLoading
 import com.gprosoft.incrowdapp.ui.view.MainActivity2
-import com.gprosoft.incrowdapp.ui.view.info.InfoFragment
+import com.gprosoft.incrowdapp.ui.view.home.info.InfoFragment
 import com.gprosoft.incrowdapp.ui.view.login.LoginViewModel
 import com.gprosoft.incrowdapp.ui.view.reset.ResetFragment
 

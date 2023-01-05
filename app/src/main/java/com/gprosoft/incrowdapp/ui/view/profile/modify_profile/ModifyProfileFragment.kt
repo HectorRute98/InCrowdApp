@@ -1,4 +1,4 @@
-package com.gprosoft.incrowdapp.ui.view.modify_profile
+package com.gprosoft.incrowdapp.ui.view.profile.modify_profile
 
 import android.app.AlertDialog
 import android.content.Context
@@ -39,7 +39,6 @@ class ModifyProfileFragment : Fragment() {
         binding.ETUserName.hint = datos.username
         binding.ETName.hint = datos.name ?: datos.name
         binding.ETEmail.hint = datos.email ?: datos.email
-        println(datos.password)//encriptada
         return binding.root
     }
 

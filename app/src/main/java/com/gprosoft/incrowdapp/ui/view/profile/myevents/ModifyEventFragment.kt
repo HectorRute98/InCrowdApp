@@ -1,7 +1,6 @@
 package com.gprosoft.incrowdapp.ui.view.profile.myevents
 
 import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.gprosoft.incrowdapp.R
 import com.gprosoft.incrowdapp.data.model.Evento
 import com.gprosoft.incrowdapp.data.network.MyApiEndpointInterface
 import com.gprosoft.incrowdapp.data.model.UsuarioProvider
-import com.gprosoft.incrowdapp.databinding.FragmentModifyEventBinding
 import com.gprosoft.incrowdapp.ui.components.DialogFragmentLoading
-import com.gprosoft.incrowdapp.ui.view.MainActivity2
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -29,47 +28,76 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ModifyEventFragment : Fragment() {
 
-    private var _binding: FragmentModifyEventBinding? = null
-    private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentModifyEventBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val view = inflater.inflate(R.layout.fragment_modify_event, container, false)
         val bundle : Bundle? = this.getArguments()
         var evento : Evento = bundle?.getSerializable("evento") as Evento
-        val nom_principal = evento.nombre
-        setup(evento)
+        setup(view , evento)
+        return view
+    }
 
-        binding.buttonInfo2.setOnClickListener{
+
+    fun setup(view:View,evento: Evento) {
+
+        val eventName = view.findViewById<TextView>(R.id.event_name)
+        val eventCap = view.findViewById<TextView>(R.id.event_cap)
+        val eventCat = view.findViewById<TextView>(R.id.event_cat)
+        val eventHour = view.findViewById<TextView>(R.id.event_hour)
+        val eventDate = view.findViewById<TextView>(R.id.event_date)
+        val eventDesc = view.findViewById<TextView>(R.id.event_desc)
+        val buttonInfo2 = view.findViewById<ImageView>(R.id.buttonInfo2)
+        val buttonCancel = view.findViewById<Button>(R.id.buttonCancel)
+        val buttonDeleteAccount = view.findViewById<Button>(R.id.buttonDeleteAccount)
+
+
+        eventName.hint = evento.nombre
+        eventCap.hint = evento.aforo.toString()
+        eventCat.hint = evento.categoria
+        eventDate.hint = evento.fecha
+        eventHour.hint = evento.hora
+        eventDesc.hint = evento.descripcion
+
+        buttonInfo2.setOnClickListener{
             if(
-                binding.eventName.text.isEmpty() &&
-                binding.eventDate.text.isEmpty() &&
-                binding.eventDesc.text.isEmpty() &&
-                binding.eventCat.text.isEmpty() &&
-                binding.eventCap.text.isEmpty() &&
-                binding.eventHour.text.isEmpty()) {
+                eventName.text.isEmpty() &&
+                eventDate.text.isEmpty() &&
+                eventDesc.text.isEmpty() &&
+                eventCat.text.isEmpty() &&
+                eventCap.text.isEmpty() &&
+                eventHour.text.isEmpty()) {
                 Toast.makeText(requireContext(),
                     "No has introducido ningún dato que cambiar", Toast.LENGTH_SHORT).show()
             } else {
-                guardar_cambios(1,evento)
+                guardar_cambios(1,evento,eventCap,eventName,eventDate,eventHour,eventDesc,eventCat)
             }
 
         }
 
-        binding.buttonDeleteAccount.setOnClickListener {
-            guardar_cambios(2,evento)
+        buttonCancel.setOnClickListener {
+            startActivity(requireActivity().intent)
+            requireActivity().finish()
+            requireActivity().overridePendingTransition(0,0)
+        }
+
+        buttonDeleteAccount.setOnClickListener {
+            guardar_cambios(2,evento,eventCap,eventName,eventDate,eventHour,eventDesc,eventCat)
         }
 
     }
 
-    private fun guardar_cambios(x:Int,evento: Evento) {
+    private fun guardar_cambios(
+        x: Int,
+        evento: Evento,
+        eventCap: TextView,
+        eventName: TextView,
+        eventDate: TextView,
+        eventHour: TextView,
+        eventDesc: TextView,
+        eventCat: TextView
+    ) {
         val builder = AlertDialog.Builder(activity)
         val vista = layoutInflater.inflate(R.layout.dialogpassword, null)
         builder.setView(vista)
@@ -85,24 +113,24 @@ class ModifyEventFragment : Fragment() {
                 dialog.hide()
                 if(x == 1){
 
-                    if(!binding.eventCap.text.isNullOrEmpty()){
-                        evento.aforo = binding.eventCap.text.toString().toInt()
+                    if(!eventCap.text.isNullOrEmpty()){
+                        evento.aforo = eventCap.text.toString().toInt()
                     }
 
-                    if(!binding.eventCat.text.isNullOrEmpty()){
-                        evento.categoria = binding.eventCat.text.toString()
+                    if(!eventCat.text.isNullOrEmpty()){
+                        evento.categoria = eventCat.text.toString()
                     }
 
-                    if(!binding.eventDesc.text.isNullOrEmpty()){
-                        evento.descripcion = binding.eventDesc.text.toString()
+                    if(!eventDesc.text.isNullOrEmpty()){
+                        evento.descripcion = eventDesc.text.toString()
                     }
 
-                    if(!binding.eventDate.text.isNullOrEmpty()){
-                        evento.fecha = binding.eventDate.text.toString()
+                    if(!eventDate.text.isNullOrEmpty()){
+                        evento.fecha = eventDate.text.toString()
                     }
 
-                    if(!binding.eventHour.text.isNullOrEmpty()){
-                        evento.hora = binding.eventHour.text.toString()
+                    if(!eventHour.text.isNullOrEmpty()){
+                        evento.hora = eventHour.text.toString()
                     }
 
                     modificar_evento(evento)
@@ -195,24 +223,15 @@ class ModifyEventFragment : Fragment() {
 
     }
 
-    private fun setup(evento: Evento) {
-        binding.eventName.hint = evento.nombre
-        binding.eventCap.hint = evento.aforo.toString()
-        binding.eventCat.hint = evento.categoria
-        binding.eventDate.hint = evento.fecha
-        binding.eventHour.hint = evento.hora
-        binding.eventDesc.hint = evento.descripcion
-    }
-
-
-
-    override fun onAttach(context: Context) {
+    /*override fun onAttach(context: Context) {
         (activity as MainActivity2).hideBottomNavigation()
         super.onAttach(context)
-    }
+    }*/
 
-    override fun onDetach() {
+    /*override fun onDetach() {
         super.onDetach()
         (activity as MainActivity2).showBottomNavigation()
-    }
+    }*/
+
+
 }

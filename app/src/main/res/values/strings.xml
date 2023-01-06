@@ -12,5 +12,7 @@
     <string name="help_text">inCrowd is an application where you can create your events and sign up for other people\'s events. You can make new friends and enjoy a unique experience for free.</string>
     <string name="title_modifyprofile">ModifyProfile</string>
     <string name="title_myevents">MyEvents</string>
+    <string name="title_myeventsfollowing">MyEventsFollowing</string>
     <string name="title_modifyevents">ModifyEvent</string>
+    <string name="title_eventnoparticipant">EventNoParticipant</string>
 </resources>

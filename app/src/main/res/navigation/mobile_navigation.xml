@@ -54,9 +54,15 @@
         tools:layout="@layout/fragment_my_events" />
 
     <fragment
-        android:id="@+id/navigation_modifyevent"
-        android:name="com.gprosoft.incrowdapp.ui.view.profile.myevents.ModifyEventFragment"
-        android:label="@string/title_modifyevents"
-        tools:layout="@layout/fragment_modify_event" />
+        android:id="@+id/navigation_myeventsfollowing"
+        android:name="com.gprosoft.incrowdapp.ui.view.profile.myeventsfollowing.MyEventsFollowingFragment"
+        android:label="@string/title_myeventsfollowing"
+        tools:layout="@layout/fragment_my_events_following" />
+
+    <fragment
+        android:id="@+id/navigation_eventnoparticipant"
+        android:name="com.gprosoft.incrowdapp.ui.view.event.EventNoParticipantFragment"
+        android:label="@string/title_eventnoparticipant"
+        tools:layout="@layout/fragment_event_no_participant" />
 
 </navigation>

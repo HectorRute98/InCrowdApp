@@ -57,5 +57,25 @@ public interface MyApiEndpointInterface {
     @GET("anadirParticipante/{nomEvento}/{nomUsuario}/")
     Call<ResponseBody> anadirParticipante(@Path("nomEvento") String nomEvento, @Path("nomUsuario") String nomUsuario);
 
+    @GET("amigosUsuario/{nomUsuario}/")
+    Call<List<UsuarioModel>> amigosUsuario(@Path("nomUsuario") String nomUsuario);
+
+    @PUT("valorarUsuario/{username}/")
+    Call<UsuarioModel> valorarUsuario(@Path("username") String username, @Body RequestBody valoracion);
+
+    @GET("deleteAmigo/{nomUsuario}/{nomAmigo}")
+    Call<ResponseBody> deleteAmigo(@Path("nomUsuario") String nomUsuario, @Path("nomAmigo") String nomAmigo);
+
+    @GET("anadirAmigo/{nomUsuario}/{nomAmigo}/")
+    Call<ResponseBody> anadirAmigo(@Path("nomUsuario") String nomUsuario, @Path("nomAmigo") String nomAmigo);
+
+    @GET("Usuarios/")
+    Call<List<UsuarioModel>> userList();
+
+    @GET("Eventos/")
+    Call<List<Evento>> eventoList();
+
+
+
 
 }

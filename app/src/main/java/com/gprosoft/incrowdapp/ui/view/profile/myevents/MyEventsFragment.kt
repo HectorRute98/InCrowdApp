@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gprosoft.incrowdapp.R
@@ -60,7 +61,7 @@ class MyEventsFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<Evento>>, t: Throwable) {
-                println("ERROR AL RECIBIR LOS EVENTOS DEL USUARIO")
+                Toast.makeText(activity,  "Server error receiving the events" , Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
         })

@@ -217,8 +217,7 @@ class ModifyEventFragment : Fragment() {
 
             override fun onFailure(call: Call<Evento>, t: Throwable) {
                 dialog.dismiss()
-                println("ERROR AL MODIFICAR EVENTO")
-            }
+                Toast.makeText(activity,  "Server error modifying this event" , Toast.LENGTH_SHORT).show() }
         })
 
     }

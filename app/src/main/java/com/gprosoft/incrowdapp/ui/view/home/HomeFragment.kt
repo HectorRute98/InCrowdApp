@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -73,7 +74,7 @@ class HomeFragment : Fragment() {
                 }
             }
             override fun onFailure(call: Call<List<Evento>>, t: Throwable) {
-                println("ERROR AL RECIBIR LA LISTA DE EVENTOS DONDE SE HA APUNTADO EL USUARIO")
+                Toast.makeText(activity,  "Server error receiving the events followed" , Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
         })

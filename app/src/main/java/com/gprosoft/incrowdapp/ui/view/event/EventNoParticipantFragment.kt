@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.gprosoft.incrowdapp.R
@@ -69,7 +70,7 @@ class EventNoParticipantFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    println("ERROR AL UNIRSE AL EVENTO")
+                    Toast.makeText(activity,  "Server error joining event" , Toast.LENGTH_SHORT).show()
                 }
             })
         }

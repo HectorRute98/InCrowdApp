@@ -90,7 +90,7 @@ class UserPageFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    println("ERROR AL AÑADIR USUARIO COMO AMIGO")
+                    Toast.makeText(activity,  "Server error following user" , Toast.LENGTH_SHORT).show()
                 }
             })
         }
@@ -113,7 +113,7 @@ class UserPageFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<Evento>>, t: Throwable) {
-                println("ERROR AL RECIBIR LA LISTA DE EVENTOS DE " + user.username)
+                Toast.makeText(activity,  "Server error receiving the events" , Toast.LENGTH_SHORT).show()
             }
         })
     }

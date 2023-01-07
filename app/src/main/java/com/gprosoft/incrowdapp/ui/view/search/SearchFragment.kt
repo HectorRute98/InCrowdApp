@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -116,7 +117,7 @@ class SearchFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<Evento>>, t: Throwable) {
-                println("HA OCURRIDO UN ERROR")
+                Toast.makeText(activity,  "Server error receiving the events" , Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -136,7 +137,7 @@ class SearchFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<UsuarioModel>>, t: Throwable) {
-                println("HA OCURRIDO UN ERROR")
+                Toast.makeText(activity,  "Server error receiving the users" , Toast.LENGTH_SHORT).show()
             }
         })
     }

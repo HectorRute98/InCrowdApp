@@ -117,7 +117,7 @@ class EventParticipantFragment : Fragment(){
                         }
                     }
                     override fun onFailure(call: Call<RespuestaModel>, t: Throwable) {
-                        println("ERROR AL SALIR AL EVENTO")
+                        Toast.makeText(activity,  "Server error leaving event" , Toast.LENGTH_SHORT).show()
                     }
                 })
             }
@@ -157,7 +157,7 @@ class EventParticipantFragment : Fragment(){
                     }
 
                     override fun onFailure(call: Call<RespuestaModel>, t: Throwable) {
-                        println("ERROR AL MANDAR MENSAJE")
+                        Toast.makeText(activity,  "Server error sending message" , Toast.LENGTH_SHORT).show()
                     }
                 })
             }
@@ -204,7 +204,7 @@ class EventParticipantFragment : Fragment(){
                         }
                     }
                     override fun onFailure(call: Call<List<UsuarioModel>>, t: Throwable) {
-                        println("ERROR AL RECIBIR LA LISTA DE PARTICIPANTES DEL EVENTO")
+                        Toast.makeText(activity,  "Server error receiving the list of participants" , Toast.LENGTH_SHORT).show()
                     }
                 })
             }
@@ -254,7 +254,7 @@ class EventParticipantFragment : Fragment(){
                 }
             }
             override fun onFailure(call: Call<List<Mensaje>>, t: Throwable) {
-                println("ERROR AL CARGAR LOS MENSAJES")
+                Toast.makeText(activity,  "Server error receiving messages" , Toast.LENGTH_SHORT).show()
             }
         })
     }

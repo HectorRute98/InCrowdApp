@@ -71,7 +71,7 @@ class FriendPageFragment : Fragment() {
             service.deleteAmigo(UsuarioProvider.usuarioModel.username, user.username)
                 .enqueue(object : Callback<ResponseBody> {
                     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                        Toast.makeText(activity, user.username + " deleted as friend " , Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, user.username + " removed as friend " , Toast.LENGTH_SHORT).show()
                         val bundle = Bundle()
                         bundle.putSerializable("usuario", user)
                         val activity = view.context as AppCompatActivity
@@ -84,7 +84,7 @@ class FriendPageFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        println("ERROR AL ELIMINAR DE AMIGOS")
+                        Toast.makeText(activity,  "Server error removing friend" , Toast.LENGTH_SHORT).show()
                     }
                 })
         }
@@ -121,7 +121,7 @@ class FriendPageFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<UsuarioModel>, t: Throwable) {
-                        println("HA OCURRIDO UN ERROR AL REALIZAR LA VALORACION")
+                        Toast.makeText(activity,  "Server error rating the user" , Toast.LENGTH_SHORT).show()
                     }
                 })
             }
@@ -144,7 +144,7 @@ class FriendPageFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<Evento>>, t: Throwable) {
-                println("ERROR AL RECIBIR LA LISTA DE EVENTOS DE " + user.username)
+                Toast.makeText(activity,  "Server error receiving the events created by " + user.username , Toast.LENGTH_SHORT).show()
             }
         })
     }

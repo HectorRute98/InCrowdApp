@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -55,7 +56,7 @@ class MyEventsFollowingFragment : Fragment() {
                 }
             }
             override fun onFailure(call: Call<List<Evento>>, t: Throwable) {
-                println("ERROR AL RECIBIR LA LISTA DE EVENTOS DONDE SE HA APUNTADO EL USUARIO")
+                Toast.makeText(activity,  "Server error receiving the events followed" , Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
         })

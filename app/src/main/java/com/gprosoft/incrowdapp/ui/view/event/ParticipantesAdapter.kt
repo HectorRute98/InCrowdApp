@@ -68,7 +68,7 @@ class ParticipantesAdapter(
             }
 
             override fun onFailure(call: Call<RespuestaModel>, t: Throwable) {
-                println("ERROR AL ELIMINAR EL PARTICIPANTE")
+
             }
         })
 

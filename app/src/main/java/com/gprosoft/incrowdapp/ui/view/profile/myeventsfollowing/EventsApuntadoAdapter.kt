@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.gprosoft.incrowdapp.R
@@ -63,7 +64,7 @@ class EventsApuntadoAdapter(private val eventsList: List<Evento>) : RecyclerView
                     }
 
                     override fun onFailure(call: Call<RespuestaModel>, t: Throwable) {
-                        println("ERROR AL RECIBIR LA LISTA DE PARTICIPANTES DEL EVENTO")
+                        Toast.makeText(v.context,  "Server error receiving the list of participants " , Toast.LENGTH_SHORT).show()
                     }
                 })
 

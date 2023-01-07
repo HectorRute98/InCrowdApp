@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.gprosoft.incrowdapp.R
@@ -65,7 +66,7 @@ class FriendsAdapter(private val friends : List<UsuarioModel>) : RecyclerView.Ad
                     }
 
                     override fun onFailure(call: Call<List<UsuarioModel>>, t: Throwable) {
-                        println("ERROR AL RECIBIR LA LISTA DE AMIGOS")
+                        Toast.makeText(v.context,  "Server error receiving the list of users" , Toast.LENGTH_SHORT).show()
                     }
                 })
             }

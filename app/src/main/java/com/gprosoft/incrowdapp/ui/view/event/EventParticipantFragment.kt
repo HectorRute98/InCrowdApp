@@ -98,7 +98,7 @@ class EventParticipantFragment : Fragment(){
                             //bundle.putSerializable("evento",evento)
                             dialog.dismiss()
                             Toast.makeText(requireContext(),
-                                "Evento abandonado exitosamente", Toast.LENGTH_LONG).show()
+                                "Event successfully abandoned", Toast.LENGTH_LONG).show()
                             startActivity(requireActivity().intent)
                             requireActivity().finish()
                             requireActivity().overridePendingTransition(0,0)

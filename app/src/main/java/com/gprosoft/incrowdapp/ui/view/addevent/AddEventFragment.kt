@@ -46,7 +46,7 @@ class AddEventFragment : Fragment() {
                 binding.eventCap.text.isEmpty() ||
                 binding.eventHour.text.isEmpty()) {
                     Toast.makeText(requireContext(),
-                        "FALTAN DATOS", Toast.LENGTH_SHORT).show()
+                        "Incomplete data", Toast.LENGTH_SHORT).show()
             } else {
                 dialog.show(requireActivity().supportFragmentManager,"customDialog")
 

@@ -69,7 +69,7 @@ class ModifyEventFragment : Fragment() {
                 eventCap.text.isEmpty() &&
                 eventHour.text.isEmpty()) {
                 Toast.makeText(requireContext(),
-                    "No has introducido ningún dato que cambiar", Toast.LENGTH_SHORT).show()
+                    "You have not entered any data to change", Toast.LENGTH_SHORT).show()
             } else {
                 guardar_cambios(1,evento,eventCap,eventName,eventDate,eventHour,eventDesc,eventCat)
             }
@@ -162,7 +162,7 @@ class ModifyEventFragment : Fragment() {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 dialog.dismiss()
                 Toast.makeText(requireContext(),
-                    "Evento eliminado exitosamente", Toast.LENGTH_SHORT).show()
+                    "Event successfully removed", Toast.LENGTH_SHORT).show()
                 startActivity(requireActivity().intent)
                 requireActivity().finish()
                 requireActivity().overridePendingTransition(0,0)
@@ -171,7 +171,7 @@ class ModifyEventFragment : Fragment() {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 dialog.dismiss()
                 Toast.makeText(requireContext(),
-                    "Evento no eliminado, intentalo de nuevo", Toast.LENGTH_SHORT).show()
+                    "Event not deleted, try again", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -204,7 +204,7 @@ class ModifyEventFragment : Fragment() {
                 if(response.body() != null){
                     dialog.dismiss()
                     Toast.makeText(requireContext(),
-                        "Evento modificado exitosamente", Toast.LENGTH_LONG).show()
+                        "Event modified successfully", Toast.LENGTH_LONG).show()
                     startActivity(requireActivity().intent)
                     requireActivity().finish()
                     requireActivity().overridePendingTransition(0,0)

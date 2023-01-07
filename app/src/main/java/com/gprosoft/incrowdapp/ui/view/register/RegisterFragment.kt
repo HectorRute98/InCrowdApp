@@ -36,11 +36,17 @@ class RegisterFragment : Fragment() {
         var dialog = DialogFragmentLoading()
 
         registerViewModel.respuestaModel.observe(requireActivity(), Observer { currentRespuesta ->
-            Toast.makeText(requireContext(),
-                currentRespuesta.success.toString() + " " + currentRespuesta.message + " " + currentRespuesta.status, Toast.LENGTH_SHORT).show()
-            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainer, LoginFragment())
-            fragmentTransaction.commit()
+            if(currentRespuesta.success == true){
+                Toast.makeText(requireContext(),
+                    binding.usernameRegister.text.toString() + " has been registered", Toast.LENGTH_SHORT).show()
+                val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.fragmentContainer, LoginFragment())
+                fragmentTransaction.commit()
+            }else{
+                Toast.makeText(requireContext(),
+                    "Invalid data", Toast.LENGTH_SHORT).show()
+            }
+
         })
 
         registerViewModel.isLoading.observe(requireActivity(), Observer {

@@ -72,9 +72,12 @@ class ModifyProfileFragment : Fragment() {
                 onDetach()
                 Toast.makeText(requireContext(),
                     "Changes saved succesfully", Toast.LENGTH_SHORT).show()
+                UsuarioProvider.usuarioModel = UsuarioProvider.usuarioNuevo
+                UsuarioProvider.usuarioNuevo = UsuarioModel(null,null,null,null,null)
             }else{
                 Toast.makeText(requireContext(),
                     currentRespuesta.success.toString() + " " + currentRespuesta.message + " " + currentRespuesta.status, Toast.LENGTH_SHORT).show()
+                UsuarioProvider.usuarioNuevo = UsuarioModel(null,null,null,null,null)
             }
 
         })

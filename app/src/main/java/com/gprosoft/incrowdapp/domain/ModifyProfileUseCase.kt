@@ -10,8 +10,7 @@ class ModifyProfileUseCase {
     private val repository = UsuarioRepository()
 
     suspend operator fun invoke(): RespuestaModel {
-        val response =  repository.getUsuarioModifyProfile()
-        return RespuestaModel(true, "hola", "hola")
+        return repository.getUsuarioModifyProfile()
     }
 
 

@@ -73,7 +73,7 @@ class ModifyProfileViewModel : ViewModel() {
 
                 if(checkPass(password!!) && checkEmail(email!!)){
                     isLoading.postValue(true)
-                    UsuarioProvider.usuarioModel = UsuarioModel(username,password,name,email, 0.0F)
+                    UsuarioProvider.usuarioNuevo = UsuarioModel(username,password,name,email, UsuarioProvider.usuarioModel.valoracion)
                     currentRespuesta = modifyProfileUseCase()
                     respuestaModel.postValue(currentRespuesta)
                     isLoading.postValue(false)

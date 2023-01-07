@@ -2,6 +2,7 @@ package com.gprosoft.incrowdapp.ui.view.event
 
 import android.content.Context
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Im
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +49,31 @@ class EventParticipantFragment : Fragment(){
         val listaMensajes = view.findViewById<RecyclerView>(R.id.recyclerMessages)
         listaMensajes.layoutManager= LinearLayoutManager(context)
         getList(listaMensajes)
+
+        val btn_info = view.findViewById<ImageView>(R.id.textView2)
+        btn_info.setOnClickListener {
+            val builder = android.app.AlertDialog.Builder(activity)
+            val vista = layoutInflater.inflate(R.layout.dialoginfo, null)
+            builder.setView(vista)
+            val dialog = builder.create()
+            dialog.show()
+
+            val nom_event2 = vista.findViewById<TextView>(R.id.nombre_evento)
+            val nom_creador2 = vista.findViewById<TextView>(R.id.nombre_creador)
+            val fecha2 = vista.findViewById<TextView>(R.id.fecha_evento)
+            val hora2 = vista.findViewById<TextView>(R.id.hora_evento)
+            val descripcion2 = vista.findViewById<TextView>(R.id.descripcion_evento)
+            val categoria2 = vista.findViewById<TextView>(R.id.categoria_evento)
+
+            nom_event2.hint = evento.nombre
+            nom_creador2.hint = evento.organizador
+            fecha2.hint = evento.fecha
+            hora2.hint = evento.hora
+            descripcion2.hint = evento.descripcion
+            categoria2.hint = evento.categoria
+
+
+        }
 
 
         val btn_salir_evento = view.findViewById<ImageView>(R.id.btn_leave_event)

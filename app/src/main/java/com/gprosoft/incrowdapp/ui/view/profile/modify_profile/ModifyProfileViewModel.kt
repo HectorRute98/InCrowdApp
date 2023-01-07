@@ -1,6 +1,7 @@
 package com.gprosoft.incrowdapp.ui.view.profile.modify_profile
 
 import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -34,7 +35,7 @@ class ModifyProfileViewModel : ViewModel() {
 
     fun saveChanges(
         nameET: EditText,
-        usernameET: EditText,
+        usernameET: TextView,
         emailET: EditText,
         passwordET: EditText
     ) {
@@ -48,13 +49,6 @@ class ModifyProfileViewModel : ViewModel() {
                     name = UsuarioProvider.usuarioModel.name
                 }else{
                     name = nameET.text.toString()
-                }
-
-                var username:String?
-                if(usernameET.text.isNullOrEmpty()){
-                    username = UsuarioProvider.usuarioModel.username
-                }else{
-                    username = usernameET.text.toString()
                 }
 
                 var password:String?
@@ -73,7 +67,7 @@ class ModifyProfileViewModel : ViewModel() {
 
                 if(checkPass(password!!) && checkEmail(email!!)){
                     isLoading.postValue(true)
-                    UsuarioProvider.usuarioNuevo = UsuarioModel(username,password,name,email, UsuarioProvider.usuarioModel.valoracion)
+                    UsuarioProvider.usuarioNuevo = UsuarioModel(UsuarioProvider.usuarioModel.username,password,name,email, UsuarioProvider.usuarioModel.valoracion)
                     currentRespuesta = modifyProfileUseCase()
                     respuestaModel.postValue(currentRespuesta)
                     isLoading.postValue(false)

@@ -58,7 +58,7 @@ class SearchFragment : Fragment() {
                 showUsers = false
                 searchLabel.text = "Search Events"
                 mRecyclerView.layoutManager = LinearLayoutManager(context)
-                mRecyclerView.adapter = EventsApuntadoAdapter(listE)
+                mRecyclerView.adapter = EventsApuntadoAdapter(sublistE)
             } else {
                 showUsers = true
                 searchLabel.text = "Search Friends"

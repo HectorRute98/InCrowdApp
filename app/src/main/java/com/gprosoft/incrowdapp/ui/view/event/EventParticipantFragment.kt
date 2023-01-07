@@ -15,6 +15,7 @@ import com.gprosoft.incrowdapp.R
 import com.gprosoft.incrowdapp.data.model.*
 import com.gprosoft.incrowdapp.data.network.MyApiEndpointInterface
 import com.gprosoft.incrowdapp.ui.components.DialogFragmentLoading
+import com.gprosoft.incrowdapp.ui.view.MainActivity2
 import com.gprosoft.incrowdapp.ui.view.profile.myevents.ModifyEventFragment
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -230,6 +231,16 @@ class EventParticipantFragment : Fragment(){
                 println("ERROR AL CARGAR LOS MENSAJES")
             }
         })
+    }
+
+    override fun onAttach(context: Context) {
+        (activity as MainActivity2).hideBottomNavigation()
+        super.onAttach(context)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        (activity as MainActivity2).showBottomNavigation()
     }
 
 }

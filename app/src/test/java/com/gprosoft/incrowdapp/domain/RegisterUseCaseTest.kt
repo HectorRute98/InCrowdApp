@@ -10,11 +10,13 @@ import org.junit.Test
 class RegisterUseCaseTest{
 
     lateinit var registerUseCase: RegisterUseCase
+    lateinit var deleteUserUseCase: DeleteUserUseCase
 
     @Before
     fun onBefore(){
         MockKAnnotations.init(this)
         registerUseCase = RegisterUseCase()
+        deleteUserUseCase = DeleteUserUseCase()
     }
 
     @Test
@@ -35,7 +37,7 @@ class RegisterUseCaseTest{
     fun `when the api deny your register because your username already exists`()= runBlocking {
 
         //Given
-        UsuarioProvider.usuarioModel = UsuarioModel("nuevo_user","nueva_pass","nuevo_name","nuevo_correo2", 0.0F)
+        UsuarioProvider.usuarioModel = UsuarioModel("Hector1234","nueva_pass","nuevo_name","nuevo_correo2", 0.0F)
 
         //When
         val response = registerUseCase()
@@ -49,7 +51,7 @@ class RegisterUseCaseTest{
     fun `when the api deny your register because your email already exists`()= runBlocking {
 
         //Given
-        UsuarioProvider.usuarioModel = UsuarioModel("nuevo_user2","nueva_pass","nuevo_name","nuevo_correo", 0.0F)
+        UsuarioProvider.usuarioModel = UsuarioModel("nuevo_user2","nueva_pass","nuevo_name","javitoperezco@gmail.com", 0.0F)
 
         //When
         val response = registerUseCase()
@@ -63,13 +65,27 @@ class RegisterUseCaseTest{
     fun `when the api deny your register because your email and your username already exists`()= runBlocking {
 
         //Given
-        UsuarioProvider.usuarioModel = UsuarioModel("nuevo_user","nueva_pass","nuevo_name","nuevo_correo", 0.0F)
+        UsuarioProvider.usuarioModel = UsuarioModel("Hector1234","nueva_pass","nuevo_name","javitoperezco@gmail.com", 0.0F)
 
         //When
         val response = registerUseCase()
 
         //Then
         assert(response.success == false)
+
+    }
+
+    @Test
+    fun `when the api reset the values for this test`()= runBlocking {
+
+        //Given
+        UsuarioProvider.usuarioModel = UsuarioModel("nuevo_user","nueva_pass","nuevo_name","nuevo_correo", 0.0F)
+
+        //When
+        val response = deleteUserUseCase()
+
+        //Then
+        assert(response.success == true)
 
     }
 

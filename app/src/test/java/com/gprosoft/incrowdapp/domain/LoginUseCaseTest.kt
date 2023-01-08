@@ -29,7 +29,7 @@ class LoginUseCaseTest{
     fun `when the api confirm your login`()= runBlocking {
 
         //Given
-        UsuarioProvider.usuarioModel = UsuarioModel("hector","hector",null,null, 0.0F)
+        UsuarioProvider.usuarioModel = UsuarioModel("Hector1234","Hector1234",null,null, 0.0F)
 
         //When
         val response = loginUseCase()
@@ -57,7 +57,8 @@ class LoginUseCaseTest{
     fun `when the api deny your login because your pass`()= runBlocking {
 
         //Given
-        UsuarioProvider.usuarioModel = UsuarioModel("hector","unknown",null,null, 0.0F)
+
+        UsuarioProvider.usuarioModel = UsuarioModel("Hector1234","unknown",null,null, 0.0F)
 
         //When
         val response = loginUseCase()

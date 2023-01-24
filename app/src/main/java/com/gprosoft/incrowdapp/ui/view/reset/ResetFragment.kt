@@ -12,14 +12,13 @@ import com.gprosoft.incrowdapp.R
 import com.gprosoft.incrowdapp.databinding.FragmentRegisterBinding
 import com.gprosoft.incrowdapp.databinding.FragmentResetBinding
 import com.gprosoft.incrowdapp.ui.components.DialogFragmentLoading
+import com.gprosoft.incrowdapp.ui.view.login.LoginFragment
 import com.gprosoft.incrowdapp.ui.view.register.RegisterViewModel
 
 class ResetFragment : Fragment() {
     private var _binding : FragmentResetBinding? = null
     private val binding get() = _binding!!
     private val resetViewModel: ResetViewModel by viewModels()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +34,10 @@ class ResetFragment : Fragment() {
 
         resetViewModel.respuestaModel.observe(requireActivity(), Observer { currentRespuesta ->
             Toast.makeText(requireContext(),
-                currentRespuesta.success.toString() + " " + currentRespuesta.message + " " + currentRespuesta.status, Toast.LENGTH_SHORT).show()
+                "New password has been sent to " + binding.emailReset.text.toString(), Toast.LENGTH_SHORT).show()
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainer, LoginFragment())
+            fragmentTransaction.commit()
         })
 
         resetViewModel.isLoading.observe(requireActivity(), Observer {
@@ -47,7 +49,17 @@ class ResetFragment : Fragment() {
         })
 
         binding.buttonSendReset.setOnClickListener {
-            resetViewModel.comprobarReset(binding.emailReset.text.toString())
+            if(binding.emailReset.text.isNullOrEmpty() or !checkEmail(binding.emailReset.text.toString())){
+                Toast.makeText(requireContext(),
+                    "Invalid data" , Toast.LENGTH_SHORT).show()
+            }else{
+                resetViewModel.comprobarReset(binding.emailReset.text.toString())
+            }
         }
     }
+
+    private fun checkEmail(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
 }

@@ -47,6 +47,9 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.navigation_myevents)
         }
 
+        binding.button2.setOnClickListener {
+            findNavController().navigate(R.id.navigation_myeventsfollowing)
+        }
 
 
     }

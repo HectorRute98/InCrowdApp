@@ -36,7 +36,7 @@ class ModifyProfileFragment : Fragment() {
     ): View? {
         _binding = FragmentModifyProfileBinding.inflate(inflater,container,false)
         val datos = UsuarioProvider.usuarioModel
-        binding.ETUserName.hint = datos.username
+        binding.ETUserName.text = datos.username
         binding.ETName.hint = datos.name ?: datos.name
         binding.ETEmail.hint = datos.email ?: datos.email
         return binding.root
@@ -72,9 +72,12 @@ class ModifyProfileFragment : Fragment() {
                 onDetach()
                 Toast.makeText(requireContext(),
                     "Changes saved succesfully", Toast.LENGTH_SHORT).show()
+                UsuarioProvider.usuarioModel = UsuarioProvider.usuarioNuevo
+                UsuarioProvider.usuarioNuevo = UsuarioModel(null,null,null,null,null)
             }else{
                 Toast.makeText(requireContext(),
                     currentRespuesta.success.toString() + " " + currentRespuesta.message + " " + currentRespuesta.status, Toast.LENGTH_SHORT).show()
+                UsuarioProvider.usuarioNuevo = UsuarioModel(null,null,null,null,null)
             }
 
         })
@@ -95,6 +98,7 @@ class ModifyProfileFragment : Fragment() {
         println("QUE SI QUE SI QUE ENTRO AQUI")
         UsuarioProvider.usuarioModel = UsuarioModel(null,null,null,null,null)
         RespuestaProvider.respuesta = RespuestaModel(null,null,null)
+        UsuarioProvider.usuarioNuevo = UsuarioModel(null,null,null,null,null)
         val intent = Intent(activity, MainActivity::class.java)
         startActivity(intent)
         activity?.finish()

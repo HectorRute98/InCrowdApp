@@ -42,10 +42,10 @@ class LoginFragment : Fragment() {
                 startActivity(intent)
                 activity?.finish()
                 Toast.makeText(requireContext(),
-                    "Welcome "+UsuarioProvider.usuarioModel.username+"!", Toast.LENGTH_SHORT).show()
+                    "Welcome "+UsuarioProvider.usuarioModel.username, Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(requireContext(),
-                    currentRespuesta.success.toString() + " " + currentRespuesta.message + " " + currentRespuesta.status, Toast.LENGTH_SHORT).show()
+                    "Invalid credentials" , Toast.LENGTH_SHORT).show()
             }
         })
 

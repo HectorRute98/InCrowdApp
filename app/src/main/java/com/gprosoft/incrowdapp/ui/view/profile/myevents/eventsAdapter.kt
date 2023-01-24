@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gprosoft.incrowdapp.R
 import com.gprosoft.incrowdapp.data.model.Evento
 import com.gprosoft.incrowdapp.data.model.EventoProvider
+import com.gprosoft.incrowdapp.ui.view.event.EventParticipantFragment
+import com.gprosoft.incrowdapp.ui.view.event.ListaParticipantesFragment
 
 class eventsAdapter(private val eventsList: List<Evento>) : RecyclerView.Adapter<eventsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): eventsViewHolder {
@@ -36,19 +38,19 @@ class eventsAdapter(private val eventsList: List<Evento>) : RecyclerView.Adapter
             }
         })
 
-        /*holder.itemView.setOnClickListener(object: View.OnClickListener{
+        holder.itemView.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v : View){
                 val bundle = Bundle()
                 bundle.putSerializable("evento",item)
                 val activity = v.context as AppCompatActivity
-                val event = eventParticipant()
+                val event = EventParticipantFragment()
                 event.arguments = bundle
                 activity.supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container,event)
+                    .replace(R.id.container,event)
                     .addToBackStack(null)
                     .commit()
             }
-        }) */
+        })
     }
 
     override fun getItemCount(): Int {

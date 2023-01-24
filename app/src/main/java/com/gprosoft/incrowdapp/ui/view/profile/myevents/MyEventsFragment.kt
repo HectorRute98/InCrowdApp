@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gprosoft.incrowdapp.R
@@ -34,10 +36,10 @@ class MyEventsFragment : Fragment() {
         var dialog = DialogFragmentLoading()
         recyclerView.layoutManager = LinearLayoutManager(context)
         conseguir_lista(recyclerView,dialog)
+
         return view
     }
 
-    //TODO mejora por capas
     private fun conseguir_lista(recyclerView: RecyclerView?, dialog: DialogFragmentLoading) {
 
         dialog.show(requireActivity().supportFragmentManager,"customDialog")
@@ -50,14 +52,16 @@ class MyEventsFragment : Fragment() {
         service.eventoUsuario(UsuarioProvider.usuarioModel.username).enqueue(object : Callback<List<Evento>> {
             override fun onResponse(call: Call<List<Evento>>, response: Response<List<Evento>>) {
                 if (!response.body().isNullOrEmpty()) {
+                    dialog.dismiss()
                     lista = response.body()!!
                     recyclerView?.adapter = eventsAdapter(lista)
+                }else{
                     dialog.dismiss()
                 }
             }
 
             override fun onFailure(call: Call<List<Evento>>, t: Throwable) {
-                println("ERROR AL RECIBIR LOS EVENTOS DEL USUARIO")
+                Toast.makeText(activity,  "Server error receiving the events" , Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
         })

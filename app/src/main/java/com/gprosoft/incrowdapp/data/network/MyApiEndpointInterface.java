@@ -1,7 +1,9 @@
 package com.gprosoft.incrowdapp.data.network;
 
 import com.gprosoft.incrowdapp.data.model.Evento;
+import com.gprosoft.incrowdapp.data.model.Mensaje;
 import com.gprosoft.incrowdapp.data.model.RespuestaModel;
+import com.gprosoft.incrowdapp.data.model.UsuarioModel;
 
 import java.util.List;
 
@@ -30,5 +32,50 @@ public interface MyApiEndpointInterface {
 
     @DELETE("DeleteEvento/{nomEvento}/")
     Call<ResponseBody> deleteEvento(@Path("nomEvento") String nomEvento);
+
+    @GET("deleteParticipante/{nomEvento}/{nomUsuario}/")
+    Call<RespuestaModel> deleteParticipante(@Path("nomEvento") String nomEvento, @Path("nomUsuario") String nomUsuario);
+
+    @POST("CreateMensaje/")
+    Call<RespuestaModel> createMensaje(@Body RequestBody body);
+
+    @GET("Mensajes/{nomEvento}/")
+    Call<List<Mensaje>> mensajeEvento(@Path("nomEvento") String nomEvento);
+
+    @GET("participantes/{evento}/")
+    Call<List<UsuarioModel>> participantes(@Path("evento") String evento);
+
+    @GET("eventosApuntados/{nomUsuario}/")
+    Call<List<Evento>> eventosApuntados(@Path("nomUsuario") String nomUsuario);
+
+    @GET("EventosRandom/{nomUsuario}/")
+    Call<List<Evento>> eventosRandom(@Path("nomUsuario") String nomUsuario);
+
+    @GET("esParticipante/{nomEvento}/{nomUsuario}/")
+    Call<RespuestaModel> esParticipante(@Path("nomEvento") String nomEvento , @Path("nomUsuario") String nomUsuario);
+
+    @GET("anadirParticipante/{nomEvento}/{nomUsuario}/")
+    Call<ResponseBody> anadirParticipante(@Path("nomEvento") String nomEvento, @Path("nomUsuario") String nomUsuario);
+
+    @GET("amigosUsuario/{nomUsuario}/")
+    Call<List<UsuarioModel>> amigosUsuario(@Path("nomUsuario") String nomUsuario);
+
+    @PUT("valorarUsuario/{username}/")
+    Call<UsuarioModel> valorarUsuario(@Path("username") String username, @Body RequestBody valoracion);
+
+    @GET("deleteAmigo/{nomUsuario}/{nomAmigo}")
+    Call<ResponseBody> deleteAmigo(@Path("nomUsuario") String nomUsuario, @Path("nomAmigo") String nomAmigo);
+
+    @GET("anadirAmigo/{nomUsuario}/{nomAmigo}/")
+    Call<ResponseBody> anadirAmigo(@Path("nomUsuario") String nomUsuario, @Path("nomAmigo") String nomAmigo);
+
+    @GET("Usuarios/")
+    Call<List<UsuarioModel>> userList();
+
+    @GET("Eventos/")
+    Call<List<Evento>> eventoList();
+
+
+
 
 }
